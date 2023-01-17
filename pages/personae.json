@@ -1,0 +1,36 @@
+{
+    "personae": [
+      {
+        "name": "New Bot",
+        "role": "Click to create",
+        "img": "addNew.png"
+      },
+      {
+        "name": "Julia",
+        "role": "Wife",
+        "img": "image (2).jpg"
+      },
+      {
+        "name": "John",
+        "role": "Dad",
+        "img": "image (4).jpg"
+      },
+      {
+        "name": "Betsy",
+        "role": "Daughter",
+        "img": "image (11).jpg"
+      },
+      {
+        "name": "Mr. Weiner",
+        "role": "Boss",
+        "img" :"image (12).jpg"
+      },
+      {
+        "name": "Nick",
+        "role": "Best Friend",
+        "img" :"image (18).jpg"
+      }
+
+    ]
+}
+  

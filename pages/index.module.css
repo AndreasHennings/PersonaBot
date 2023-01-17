@@ -1,0 +1,160 @@
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
+      format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+.body, .html {
+  background-color: pink;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+
+.main,
+.main input {
+  font-size: 16px;
+  line-height: 24px;
+  color: #353740;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+}
+
+
+
+.main {
+  height: 100vh; /* set the height of the main container to the full viewport height */
+  overflow: hidden; /* prevent scrolling */
+  
+  border: none; /* remove the border */
+  padding: 0; /* remove padding */
+  margin: 0; /* remove margin */
+}
+
+
+.header{
+  height: calc(100vh / 4);
+}
+
+
+.cardHolder {
+
+ height: calc(100vh / 2);
+ display: flex; /* display the cards in a row */
+ overflow-x: scroll; /* enable horizontal scrolling */
+ overflow-y:hidden;
+ white-space: nowrap; /* prevent the cards from wrapping to a new line */
+}
+
+.footer{
+  height: calc(100vh / 4);
+}
+.card {
+  height: 90%;
+  margin: 1rem;
+  border: #353740;
+  
+}
+.cardImage:hover {
+  border: 5px;
+  border-color: rgb(232, 248, 2);
+  border-style: solid;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.cardImage {
+  border-radius: 1rem;
+  object-fit: cover; /* this will make the image cover the whole container */
+  width: 100%; /* this will make the image fill the whole width of the container */
+  height: 100%; /* this will make the image fill the whole height of the container */
+  position: absolute; /* position the image absolutely */
+  top: 50%; /* position the image 50% from the top */
+  left: 50%; /* position the image 50% from the left */
+  transform: translate(-50%, -50%); /* center the image */
+}
+
+.cardName {
+  font-family: 'Lato', sans-serif;
+  font-size: large;
+  width:auto;
+  background-color: rgba(0,0,0,0.5);
+  color: azure;
+  position: absolute;
+  bottom: 2em; /* align to bottom of card */
+  left: 0;
+  right: 0;
+  text-align: center; /* center text */
+}
+
+.cardRole {
+  font-size: smaller;
+  width:auto;
+  background-color: rgba(0,0,0,0.5);
+  color: azure;
+  position: absolute;
+  bottom: 1em; /* align to bottom of card */
+  left: 0;
+  right: 0;
+  text-align: center; /* center text */
+}
+
+
+
+/* top row */
+.main h1 {
+  text-align: center; /* center the text */
+  align-self: center; /* align the h1 element vertically in the middle of the row */
+}
+.main h3 {
+  text-align: center; /* center the text */
+  align-self: center; /* align the h3 element vertically in the middle of the row */
+}
+
+/* middle row */
+
+
+
+
+.main form {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+}
+.main input[type="text"] {
+  padding: 12px 16px;
+  border: 1px solid #10a37f;
+  border-radius: 4px;
+  margin-bottom: 24px;
+  outline-color: #10a37f;
+}
+.main ::placeholder {
+  color: #8e8ea0;
+  opacity: 1;
+}
+.main input[type="submit"] {
+  padding: 12px 0;
+  color: #fff;
+  background-color: #10a37f;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+.main .result {
+  font-weight: bold;
+  margin-top: 40px;
+}
