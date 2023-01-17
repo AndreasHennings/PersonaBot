@@ -1,6 +1,8 @@
 # PersonaBot
 ## A management tool for creating and editing ChatGPT-based Chatbots for the Telegram Messenger
 
+![UI](/public/PersBotUI.png)
+
 ### About
 
 Easily create and configure Chatbots for the Telegram messenger app. 
