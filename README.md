@@ -1,6 +1,13 @@
-# OpenAI API Quickstart - Node.js example app
+# PersonaBot - A management tool for creating and editing ChatGPT-based Chatbots
 
-This is an example pet name generator app used in the OpenAI API [quickstart tutorial](https://beta.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). Check out the tutorial or follow the instructions below to get set up.
+
+## Prerequisites
+
+If you want to create a new bot, you'll need two things:
+
+1. An OpenAI API-key (https://beta.openai.com/docs/quickstart)
+
+2. Credentials for a telegram bot. 
 
 ## Setup
 
@@ -10,32 +17,17 @@ This is an example pet name generator app used in the OpenAI API [quickstart tut
 
 3. Navigate into the project directory
 
-   ```bash
-   $ cd openai-quickstart-node
-   ```
-
 4. Install the requirements
 
    ```bash
    $ npm install
    ```
 
-5. Make a copy of the example environment variables file
-
-   On Linux systems: 
-   ```bash
-   $ cp .env.example .env
-   ```
-   On Windows:
-   ```powershell
-   $ copy .env.example .env
-   ```
-6. Add your [API key](https://beta.openai.com/account/api-keys) to the newly created `.env` file
-
-7. Run the app
-
-   ```bash
-   $ npm run dev
-   ```
 
 You should now be able to access the app at [http://localhost:3000](http://localhost:3000)! For the full context behind this example app, check out the [tutorial](https://beta.openai.com/docs/quickstart).
+
+## Technology
+
+This project uses
+
+- [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). 
