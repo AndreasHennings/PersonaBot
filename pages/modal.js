@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from 'react-overlays/Modal';
 import styles from "./index.module.css";
 
+
 export default function EditModal({ persona, show, onHide, onSubmit }) {
 
   if (!persona) {
@@ -15,21 +16,45 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
   };
 
 
+ /*  
+ Layout contains the following information:
+ 1. General: Name (mandatory), 
+ Optional: Image, Role, gender, age, etc...
+
+ 2. Openai settings (mandatory)
+ api-key, model, temperature
+
+ 3. outside connections:
+ Telegram settings: api-key, channel id....
+ Optional: Twitter...
+
+ 4. prompt input
+
+   */
+
+
 
   return (
     <Modal show={show} onHide={onHide}>
-      <div className={styles.modal}>
+      <div className={styles.modal} >
+
         <form onSubmit={handleSubmit}>
+          
           <label>
             Name:
+            
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+
           </label>
+
           <button type="submit">Save</button>
         </form>
+
+
       </div>
     </Modal>
   );

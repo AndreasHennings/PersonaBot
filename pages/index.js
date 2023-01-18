@@ -3,14 +3,17 @@ import { useState } from "react";
 import styles from "./index.module.css";
 import { Container, Row, Col } from 'react-grid-system';
 import EditModal from './modal'
-//import {personae} from './personae.json';
 
 export default function Home() {
-  const personaeData = require('./personae.json');
-   // state for controlling the modal
+
+  //import all bot data
+  const personaeData = require('./personae copy.json');
+   
+  // state for controlling the modal
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedPersona, setSelectedPersona] = useState(null);
   const [personae, setPersonae] = useState(personaeData.personae);
+  console.log(personae);
 
   // function for opening and closing the modal
   const toggleModal = (persona) => {
@@ -52,17 +55,17 @@ export default function Home() {
           </Row>
 
           <Row className={styles.cardHolder} wrap='nowrap'>
-              {personae.map(persona => (
+            {personae.map (persona => (
                 <Col lg={2} className={styles.card} onClick={() => toggleModal(persona)}>
 
                   <Row>
-                    <img className={styles.cardImage} src={persona.img} />
+                    <img className={styles.cardImage} src={persona.data[0].personal.img} />
                   </Row>
                   <Row>
                     <div className={styles.cardName}>{persona.name}</div>
                   </Row>
                   <Row>
-                    <div className={styles.cardRole}>{persona.role}</div>
+                    <div className={styles.cardRole}>{persona.data[0].personal.role}</div>
                   </Row>
                 </Col>
               ))}
@@ -70,7 +73,7 @@ export default function Home() {
           </Row>
 
           <Row className={styles.footer}> 
-            	<Col lg={12}>placeholder</Col>
+            	<Col lg={12}></Col>
           </Row>
         </Container>
         <EditModal 
