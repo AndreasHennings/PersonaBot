@@ -16,21 +16,16 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
   };
 
 
- /*  
- Layout contains the following information:
- 1. General: Name (mandatory), 
- Optional: Image, Role, gender, age, etc...
+  const createState = (obj) => {
+    const state = {};
+    Object.entries(obj).forEach(([key, value]) => {
+        state[key] = useState(value);
+    });
+    return state;
+};
 
- 2. Openai settings (mandatory)
- api-key, model, temperature
+const personaState = createState(persona);
 
- 3. outside connections:
- Telegram settings: api-key, channel id....
- Optional: Twitter...
-
- 4. prompt input
-
-   */
 
 
 
@@ -38,22 +33,38 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
     <Modal show={show} onHide={onHide}>
       <div className={styles.modal} >
 
-        <form onSubmit={handleSubmit}>
-          
-          <label>
-            Name:
-            
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+        <div className={styles.modalHeader}>
+          <h3 className={styles.cancel}>Cancel</h3>
+          <h3 className={styles.title}>Edit Persona</h3>
+          <h3 className={styles.submit}>Submit</h3>
+        </div>
 
-          </label>
+        <div className={styles.modalContent}>
 
-          <button type="submit">Save</button>
-        </form>
+          <div className={styles.modalContentRows}>
+            <h3>Personal</h3>
+            {Object.entries(persona.data[0].personal).map(([key, value]) => (
+              <div key={key} className={styles.inputContainer}>
+                <label>{key}:</label>
+                <input className={styles.input} type="text" value={value} />
+              </div>))}
+          </div>
 
+          <div className={styles.modalContentRows}>
+            <h3>Technical</h3>
+            {Object.entries(persona.data[0].technical).map(([key, value]) => (
+              <div key={key} className={styles.inputContainer}>
+                <label>{key}:</label>
+                <input type="text"value={value} />
+              </div>))}
+          </div>
+
+          <div className={styles.modalContentRows}>
+            <h3>Prompt</h3>       
+            <textarea className={styles.prompt} value={persona.data[0].prompt}>
+            </textarea>
+          </div>
+        </div>
 
       </div>
     </Modal>

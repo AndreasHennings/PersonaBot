@@ -5,21 +5,17 @@
       "data": [
         {
           "personal": {
+            
             "role": "friend",
             "img": "image (2).jpg",
             "age": 25,
             "gender": "male"
           },
-          "openai": {
+          "technical": {
             "api-key": "abc123",
             "model": "text-davinci-002"
           },
-          "connect": {
-            "telegram": {
-              "api-key": "def456",
-              "channel": "personabot"
-            }
-          },
+          
           "prompt": "Hello, I am name1. What can I help you with today?"
         }
       ]
