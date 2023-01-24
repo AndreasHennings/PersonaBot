@@ -13,27 +13,28 @@ export default function Home() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedPersona, setSelectedPersona] = useState(null);
   const [personae, setPersonae] = useState(personaeData.personae);
-  console.log(personae);
-
+  
   // function for opening and closing the modal
   const toggleModal = (persona) => {
     setSelectedPersona(persona);
     setModalIsOpen(!modalIsOpen);
   }
 
-  // function for updating the persona's name
-  const updatePersona = (name) => {
-    const updatedPersona = {...selectedPersona, name: name};
-    const newPersonae = personae.map(p => {
-      if(p.name === selectedPersona.name) {
-        return updatedPersona;
-      }
-      return p;
-    });
+  // function for updating the persona: If the persona returned from the modal already exists, update the data.
+  // else: create a new persona and add it to the personae list.
+  const updatePersona = (updatedPersona) => {
+    let newPersonae = [...personae];
+    let existingPersonaIndex = newPersonae.findIndex(p => p.name === updatedPersona.name);
+    if (existingPersonaIndex !== -1) {
+        newPersonae[existingPersonaIndex] = updatedPersona;
+    } else {
+        newPersonae.push(updatedPersona);
+    }
     setPersonae(newPersonae);
     setSelectedPersona(null);
     setModalIsOpen(false);
-  }
+}
+
 
   
 
