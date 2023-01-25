@@ -7,7 +7,7 @@ import EditModal from './modal'
 export default function Home() {
 
   //import all bot data
-  const personaeData = require('./personae copy.json');
+  const personaeData = require('./personae.json');
    
   // state for controlling the modal
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -33,10 +33,8 @@ export default function Home() {
     setPersonae(newPersonae);
     setSelectedPersona(null);
     setModalIsOpen(false);
+    savePersonaeToJSON(newPersonae);
 }
-
-
-  
 
   return (
     <div>
@@ -58,7 +56,6 @@ export default function Home() {
           <Row className={styles.cardHolder} wrap='nowrap'>
             {personae.map (persona => (
                 <Col lg={2} className={styles.card} onClick={() => toggleModal(persona)}>
-
                   <Row>
                     <img className={styles.cardImage} src={persona.data[0].personal.img} />
                   </Row>
@@ -70,20 +67,19 @@ export default function Home() {
                   </Row>
                 </Col>
               ))}
-
           </Row>
 
           <Row className={styles.footer}> 
-            	<Col lg={12}></Col>
+            	<Col lg={12}>Chat</Col>
           </Row>
         </Container>
+
         <EditModal 
           persona={selectedPersona} 
           show={modalIsOpen} 
           onHide={toggleModal} 
-          onSubmit={updatePersona} 
-        />
+          onSubmit={updatePersona}/>
         </div>
     </div>
   );
-              }
+}
