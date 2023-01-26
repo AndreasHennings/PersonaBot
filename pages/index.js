@@ -33,7 +33,7 @@ export default function Home() {
     setPersonae(newPersonae);
     setSelectedPersona(null);
     setModalIsOpen(false);
-    savePersonaeToJSON(newPersonae);
+    //savePersonaeToJSON(newPersonae);
 }
 
   return (
