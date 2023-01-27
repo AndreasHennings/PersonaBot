@@ -4,7 +4,7 @@ import styles from "./index.module.css";
 
 export default function EditModal({ persona, show, onHide, onSubmit }) {
 
-  if (!persona) {return null;}
+  if (!persona) { return null; }
 
   //Since the bot's name is outside of the data-array and is used to identify individual bots,
   //We're creating a separate hook for its data
@@ -13,21 +13,21 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
   //Called when the edit is finished
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({...persona, name: name, data: [personaData]});
+    onSubmit({ ...persona, name: name, data: [personaData] });
   };
-  
+
   //Create hook for all of the bot's data
   const [personaData, setPersonaData] = useState(persona.data[0]);
-  
+
   //Make input fields editable by updating data
   const handleChange = (e, key) => {
     setPersonaData((prevPersonaData) => {
-        return {
-            ...prevPersonaData,
-            [key]: e.target.value
-        }
+      return {
+        ...prevPersonaData,
+        [key]: e.target.value
+      }
     });
-};
+  };
 
   return (
     <Modal show={show} onHide={onHide}>
@@ -35,8 +35,8 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
 
         <div className={styles.modalHeader}>
           <h3 className={styles.cancel} onClick={() => onHide(persona)}>Cancel</h3>
-          <h3 className={styles.title}>Edit Persona: </h3>
-          <h3 className={styles.submit} onClick={handleSubmit}>Submit</h3>
+
+          <h3 className={styles.submit} onClick={handleSubmit}>Create persona and start conversation</h3>
         </div>
 
         <div className={styles.modalContent}>
@@ -49,17 +49,18 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
                 className={styles.input}
                 type="text"
                 value={name}
-                onChange={e => setName(e.target.value)}/>
+                onChange={e => setName(e.target.value)} />
             </div>
 
             {Object.entries(personaData.personal).map(([key, value]) => (
               <div key={key} className={styles.inputContainer}>
                 <label>{key}:</label>
-                <input 
-                  className={styles.input} 
-                  type="text" value={value} 
-                  onChange={e => setPersonaData({...personaData, personal: {...personaData.personal,[key]: e.target.value}
-                })}/>
+                <input
+                  className={styles.input}
+                  type="text" value={value}
+                  onChange={e => setPersonaData({
+                    ...personaData, personal: { ...personaData.personal, [key]: e.target.value }
+                  })} />
               </div>))}
           </div>
 
@@ -68,24 +69,28 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
             {Object.entries(personaData.technical).map(([key, value]) => (
               <div key={key} className={styles.inputContainer}>
                 <label>{key}:</label>
-                <input 
-                  className={styles.input} 
-                  type="text" value={value} 
-                  onChange={e => setPersonaData({...personaData, technical: {...personaData.technical,[key]: e.target.value}
-                })}/>
+                <input
+                  className={styles.input}
+                  type="text" value={value}
+                  onChange={e => setPersonaData({
+                    ...personaData, technical: { ...personaData.technical, [key]: e.target.value }
+                  })} />
               </div>))}
           </div>
 
           <div className={styles.modalContentRows}>
-            <h3>Prompt</h3>
-            <textarea
-              className={styles.prompt}
-              value={personaData.prompt}
-              onChange={e => setPersonaData({ ...personaData, prompt: e.target.value })}>
-            </textarea>
+            <h3>Chat</h3>
+            <div className={styles.inputContainer}>
+              <input className={styles.input} type="text" placeholder="Type your message here" onChange={handleChange} />
+              <button className={styles.submit} onClick={handleSubmit}>Send</button>
+            </div>
+            <div className={styles.chatContainer}>
+              <div className={styles.chatContent}>
+                {/* Display chat content here */}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </div></div>
     </Modal>
   );
 }
