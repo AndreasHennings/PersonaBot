@@ -57,20 +57,20 @@ export default function Home() {
             {personae.map (persona => (
                 <Col lg={2} className={styles.card} onClick={() => toggleModal(persona)}>
                   <Row>
-                    <img className={styles.cardImage} src={persona.data[0].personal.img} />
+                    <img className={styles.cardImage} src={persona.img} />
                   </Row>
                   <Row>
                     <div className={styles.cardName}>{persona.name}</div>
                   </Row>
                   <Row>
-                    <div className={styles.cardRole}>{persona.data[0].personal.role}</div>
+                    <div className={styles.cardRole}>{persona.role}</div>
                   </Row>
                 </Col>
               ))}
           </Row>
 
           <Row className={styles.footer}> 
-            	<Col lg={12}>Chat</Col>
+            	<Col lg={12}>Placeholder</Col>
           </Row>
         </Container>
 
