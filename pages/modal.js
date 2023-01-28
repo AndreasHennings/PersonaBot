@@ -85,12 +85,23 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
               <button className={styles.submit} onClick={handleSubmit}>Send</button>
             </div>
             <div className={styles.chatContainer}>
-              <div className={styles.chatContent}>
-                {/* Display chat content here */}
+              <div className={styles.prompt}>
+                {persona.chat.map((message, index) => (
+                  <div key={index} className={`${styles.message} ${message.From === 'Bot' ? styles.leftAligned : styles.rightAligned}`}>
+                    <div className={styles.messageMeta}>
+                      <div className={styles.messageFrom}>{message.From}</div>
+                      <div className={styles.messageTime}>{message.Time}</div>
+                    </div>
+                    <div className={styles.messageContent}>{message.Content}</div>
+                  </div>
+                ))}
               </div>
+
             </div>
+
           </div>
-        </div></div>
+        </div>
+      </div>
     </Modal>
   );
 }

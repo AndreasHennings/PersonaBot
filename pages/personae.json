@@ -26,6 +26,18 @@
             "presence_penalty": 0
           }
         }
+      ],
+      "chat" : [
+        {
+          "From" : "Bot",
+          "Time" : "yyyy-mm-dd hh:mm:ss",
+          "Content" : "Hey how are you?"
+        },
+        {
+          "From" : "user",
+          "Time" : "yyyy-mm-dd hh:mm:ss",
+          "Content" : "Thanks I'm fine"
+        }
       ]
     },
     {
