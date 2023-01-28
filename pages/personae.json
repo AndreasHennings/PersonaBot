@@ -24,7 +24,20 @@
             "top_p": 1,
             "frequency_penalty": 0,
             "presence_penalty": 0
-          }
+          },
+          "prompt" : "You are a friend of the user. You are a funny and outgoing person. You enjoy spending time with friends and family. You are 25 years old. You are a software developer."
+        }
+      ],
+      "chat" : [
+        {
+          "From" : "Bot",
+          "Time" : "yyyy-mm-dd hh:mm:ss",
+          "Content" : "Hey how are you?"
+        },
+        {
+          "From" : "user",
+          "Time" : "yyyy-mm-dd hh:mm:ss",
+          "Content" : "Thanks I'm fine"
         }
       ]
     },
