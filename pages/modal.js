@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from 'react-overlays/Modal';
-import styles from "./index.module.css";
+import styles from "./modal.module.css";
 
 export default function EditModal({ persona, show, onHide, onSubmit }) {
 
