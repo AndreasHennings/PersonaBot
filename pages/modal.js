@@ -44,9 +44,9 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
             </Col>
           </Row>
 
-          <Row className={styles.modalContent}>
+          <Row className={styles.modalContent} wrap="nowrap">
 
-            <Col className={styles.modalContentRows}>
+            <Col className={styles.modalContentRows} wrap="nowrap">
 
               <h3>Persona</h3>
               
@@ -58,16 +58,16 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
                     value={name}
                     onChange={e => setName(e.target.value)} />
                 </div>
-                <Row>
-              <div className={styles.modalContentRows}>
+               
+              <div>
                 
                 <textarea
-                  className={styles.chatContainer}
+                  className={styles.promptInput}
                   value={personaData.prompt}
                   onChange={e => setPersonaData({ ...personaData, prompt: e.target.value })}
                 >
                 </textarea>
-              </div></Row>
+              </div>
              
 
 
@@ -86,7 +86,7 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
               </div>))} */}
             </Col>
 
-            <Col className={styles.modalContentRows}>
+            <Col className={styles.modalContentRows} wrap="nowrap">
               <h3>Technical</h3>
               {Object.entries(personaData.technical).map(([key, value]) => (
                 <div key={key} className={styles.inputContainer}>
@@ -103,7 +103,7 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
                 </div>))}
             </Col>
 
-            <Col className={styles.modalContentRows}>
+            <Col className={styles.modalContentRows} wrap="nowrap">
               <h3>Chat</h3>
               <Row className={styles.inputContainer}>
                 <Col>
@@ -113,8 +113,9 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
 
                   <button className={styles.submit} onClick={handleSubmit}>Send</button></Col>
               </Row>
-              <Row className={styles.chatContainer}>
-                <div className={styles.prompt}>
+              
+              <div className={styles.chatContainer} wrap="nowrap">
+                
                   {persona.chat.map((message, index) => (
                     <div key={index} className={`${styles.message} ${message.From === 'Bot' ? styles.leftAligned : styles.rightAligned}`}>
                       <div className={styles.messageMeta}>
@@ -126,7 +127,7 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
                   ))}
                 </div>
 
-              </Row>
+             
 
             </Col>
           </Row>
