@@ -10,7 +10,7 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
   //Since the bot's name is outside of the data-array and is used to identify individual bots,
   //We're creating a separate hook for its data
   const [name, setName] = useState(persona.name);
-
+  
   //Called when the edit is finished
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,6 +42,14 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
     if (messageInput) {
     const prompt = messageInput.value;
     sendPrompt(prompt);
+
+    const chatMessage = {
+      "From": "user",
+      "Time": new Date().toLocaleString(),
+      "Content": prompt
+  };
+  setPersonaData({ ...personaData, chat: chatMessage})
+  //personaData.chat.push(chatMessage);
   }
 }
 
@@ -59,6 +67,7 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
         }),
     });
     const data = await response.json();
+    console.log(data.result);
     if (response.status !== 200) {
         throw data.error || new Error(`Request failed with status ${response.status}`);
     }
@@ -67,8 +76,9 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
         "Time": new Date().toLocaleString(),
         "Content": data.result
     };
-    persona.chat.push(chatMessage);
-    //setMessages([...messages, chatMessage]);
+    setPersonaData({ ...personaData, chat: chatMessage})
+    //personaData.chat.push(chatMessage);
+    
 }
 
 
@@ -147,7 +157,7 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
 
               <div className={styles.chatContainer} wrap="nowrap">
 
-                {persona.chat.map((message, index) => (
+                {personaData.chat.map((message, index) => (
                   <div key={index} className={`${styles.message} ${message.From === 'Bot' ? styles.leftAligned : styles.rightAligned}`}>
                     <div className={styles.messageMeta}>
                       <div className={styles.messageFrom}>{message.From}</div>
