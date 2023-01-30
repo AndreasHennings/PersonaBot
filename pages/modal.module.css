@@ -32,7 +32,7 @@
   transform: translate(-50%, -50%);
   width: 80%;
   height: 80%;
-  background-color: rgba(122, 207, 247, 0.9);
+  background-color: #A4D3FF;
   padding: 20px;
   box-shadow: 0px 0px 10px 0px #00000040;
   z-index: 9999;
@@ -42,23 +42,18 @@
 .modalHeader{
   border-radius: 1rem;
   display: flex;
-  flex-direction: row;
+  padding: 1rem;
   width: 100%;
-  margin-top: 0; 
-  justify-content: space-between;
-}
-
-.cancel{
-  border-radius: 1rem;
-  background-color: crimson;
-  align-self: flex-start;
+  
   
 }
 
 .submit{
+
+  margin: 0.1rem;
   border-radius: 1rem;
-  background-color: rgb(3, 182, 42);
-  align-self: flex-end;
+  background-color: rgb(3, 182, 42, 0.5);
+  width: 100%;
 }
 
 .modalHeader h3 {
@@ -69,7 +64,7 @@
  
   max-height: 25rem;
   border-radius: 1rem;
-  background-color: #a4fce6;
+ 
   
 }
 
@@ -77,9 +72,14 @@
   border: solid 1px gray;
   border-radius: 1em;
   padding: 0.5rem;
- width: 100%;
+  margin: 0.2rem;
+  background-color: #a4fce691;
  
-  margin: 0.5rem;
+}
+
+.submit:hover{
+  cursor: pointer;
+  background-color: #b3fca491;
 }
 
 .inputContainer{
@@ -105,9 +105,10 @@ max-height: 50%;
 
 .promptInput {
  
-  min-height: 200px;
+  min-height: 10rem;
   width: 100%;
-  height: 100%;
+  margin: 1rem;
+ 
 }
 
 
@@ -123,15 +124,15 @@ max-height: 50%;
  
   
   align-self: flex-start;
-  background-color: #F5F5F5;
+  background-color: #a4fce691;
 }
 
 .rightAligned {
   
  margin-right: 0;
   align-self: flex-end;
-  background-color: #007AFF;
-  color: white;
+  background-color: #a4d3ff;
+ 
 }
 
 .input {
