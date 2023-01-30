@@ -37,10 +37,10 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
 
           <Row className={styles.modalHeader}>
             <Col>
-              <h3 className={styles.cancel} onClick={() => onHide(persona)}>Cancel</h3>
+              <button className={styles.submit} onClick={() => onHide(persona)}>Close and Discard</button>
             </Col>
             <Col>
-              <h3 className={styles.submit} onClick={handleSubmit}>Create persona and start conversation</h3>
+              <button className={styles.submit} onClick={handleSubmit}>Close and Save</button>
             </Col>
           </Row>
 
@@ -49,25 +49,32 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
             <Col className={styles.modalContentRows} wrap="nowrap">
 
               <h3>Persona</h3>
-              
+              <Row>
                 <div className={styles.inputContainer}>
-                  <label>Name:</label>
+                  <Col>
+                  <label>Name:</label></Col>
+                  <Col>
                   <input
                     className={styles.input}
                     type="text"
                     value={name}
-                    onChange={e => setName(e.target.value)} />
+                    onChange={e => setName(e.target.value)} /></Col>
                 </div>
-               
-              <div>
+               </Row>
+               <Row>
+         
                 
                 <textarea
                   className={styles.promptInput}
                   value={personaData.prompt}
                   onChange={e => setPersonaData({ ...personaData, prompt: e.target.value })}
                 >
-                </textarea>
-              </div>
+                </textarea></Row>
+                
+                <Row>
+                <button className={styles.submit} onClick={handleSubmit}>Init Persona with Prompt</button>
+                </Row>
+     
              
 
 
@@ -111,7 +118,7 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
                 </Col>
                 <Col>
 
-                  <button className={styles.submit} onClick={handleSubmit}>Send</button></Col>
+                  <button className={`${styles.submit} ${styles.button}`} onClick={handleSubmit}>Send</button></Col>
               </Row>
               
               <div className={styles.chatContainer} wrap="nowrap">
