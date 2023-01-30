@@ -30,6 +30,48 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
     });
   };
 
+  function initialPrompt(info)
+  {
+    const prompt = "Your name is "+ persona.name + ". " + info;
+    sendPrompt(prompt);
+  }
+
+
+  function sendMessage(){
+    const messageInput = document.getElementById("messageInput");
+    if (messageInput) {
+    const prompt = messageInput.value;
+    sendPrompt(prompt);
+  }
+}
+
+  async function sendPrompt(prompt) {
+
+    console.log(prompt);
+    const response = await fetch("/api/generate", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            prompt: prompt,
+            technical: personaData.technical
+        }),
+    });
+    const data = await response.json();
+    if (response.status !== 200) {
+        throw data.error || new Error(`Request failed with status ${response.status}`);
+    }
+    const chatMessage = {
+        "From": "Bot",
+        "Time": new Date().toLocaleString(),
+        "Content": data.result
+    };
+    persona.chat.push(chatMessage);
+    //setMessages([...messages, chatMessage]);
+}
+
+
   return (
     <Modal show={show} onHide={onHide}>
       <div className={styles.modal} >
@@ -52,45 +94,27 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
               <Row>
                 <div className={styles.inputContainer}>
                   <Col>
-                  <label>Name:</label></Col>
+                    <label>Name:</label></Col>
                   <Col>
-                  <input
-                    className={styles.input}
-                    type="text"
-                    value={name}
-                    onChange={e => setName(e.target.value)} /></Col>
+                    <input
+                      className={styles.input}
+                      type="text"
+                      value={name}
+                      onChange={e => setName(e.target.value)} /></Col>
                 </div>
-               </Row>
-               <Row>
-         
-                
+              </Row>
+              <Row>
                 <textarea
                   className={styles.promptInput}
                   value={personaData.prompt}
                   onChange={e => setPersonaData({ ...personaData, prompt: e.target.value })}
                 >
-                </textarea></Row>
-                
-                <Row>
-                <button className={styles.submit} onClick={handleSubmit}>Init Persona with Prompt</button>
-                </Row>
-     
-             
+                </textarea>
+              </Row>
 
-
-
-
-
-              {/* {Object.entries(personaData.personal).map(([key, value]) => (
-              <div key={key} className={styles.inputContainer}>
-                <label>{key}:</label>
-                <input
-                  className={styles.input}
-                  type="text" value={value}
-                  onChange={e => setPersonaData({
-                    ...personaData, personal: { ...personaData.personal, [key]: e.target.value }
-                  })} />
-              </div>))} */}
+              <Row>
+                <button className={styles.submit} onClick={() => initialPrompt(personaData.prompt)}>Init Persona with Prompt</button>
+              </Row>
             </Col>
 
             <Col className={styles.modalContentRows} wrap="nowrap">
@@ -113,29 +137,26 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
             <Col className={styles.modalContentRows} wrap="nowrap">
               <h3>Chat</h3>
               <Row className={styles.inputContainer}>
+
                 <Col>
-                  <input className={styles.input} type="text" placeholder="Type your message here" onChange={handleChange} />
+                  <input className={styles.input} id="messageInput" type="text" placeholder="Type your message here" onChange={handleChange} />
                 </Col>
                 <Col>
-
-                  <button className={`${styles.submit} ${styles.button}`} onClick={handleSubmit}>Send</button></Col>
+                  <button className={`${styles.submit} ${styles.button}`} onClick={()=>sendMessage()}>Send</button></Col>
               </Row>
-              
+
               <div className={styles.chatContainer} wrap="nowrap">
-                
-                  {persona.chat.map((message, index) => (
-                    <div key={index} className={`${styles.message} ${message.From === 'Bot' ? styles.leftAligned : styles.rightAligned}`}>
-                      <div className={styles.messageMeta}>
-                        <div className={styles.messageFrom}>{message.From}</div>
-                        <div className={styles.messageTime}>{message.Time}</div>
-                      </div>
-                      <div className={styles.messageContent}>{message.Content}</div>
+
+                {persona.chat.map((message, index) => (
+                  <div key={index} className={`${styles.message} ${message.From === 'Bot' ? styles.leftAligned : styles.rightAligned}`}>
+                    <div className={styles.messageMeta}>
+                      <div className={styles.messageFrom}>{message.From}</div>
+                      <div className={styles.messageTime}>{message.Time}</div>
                     </div>
-                  ))}
-                </div>
-
-             
-
+                    <div className={styles.messageContent}>{message.Content}</div>
+                  </div>
+                ))}
+              </div>
             </Col>
           </Row>
         </Container>
