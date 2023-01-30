@@ -17,13 +17,18 @@
           },
           "chat" : [
             {
-              "From" : "Bot",
+              "From" : "user",
               "Time" : "yyyy-mm-dd hh:mm:ss",
               "Content" : "Hey what are you?"
-            }      
+            },
+            {
+              "From" : "bot",
+              "Time" : "yyyy-mm-dd hh:mm:ss",
+              "Content" : "I'm a bot"
+            }       
           ],
           
-          "prompt" : "My name is Jim. We are in a conversation using a messenger app. Jim: Hey, how are you? John: Thanks, I'm great. And you? Jim:"
+          "prompt" : "My name is Jim. We are in a conversation using a messenger app. You are a 23 old male who has known me for years."
         }
 
       ]

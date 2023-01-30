@@ -30,32 +30,48 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
     });
   };
 
-  function initialPrompt(info)
-  {
-    const prompt = "Your name is "+ persona.name + ". " + info;
-    sendPrompt(prompt);
-  }
+  /* function updatePrompt(message){
+    setPersonaData(prevPersonaData => {
+      return {
+        ...prevPersonaData,
+        prompt: [...prevPersonaData.prompt, message]
+      };
+    });
 
+  } */
 
-  function sendMessage(){
+  
+
+//***************************************************************************************************************** */
+  function sendMessage() {
     const messageInput = document.getElementById("messageInput");
     if (messageInput) {
-    const prompt = messageInput.value;
-    sendPrompt(prompt);
+      const prompt = personaData.prompt + " \nuser: "+ messageInput.value + "\nYou:";
 
-    const chatMessage = {
-      "From": "user",
-      "Time": new Date().toLocaleString(),
-      "Content": prompt
-  };
-  setPersonaData({ ...personaData, chat: chatMessage})
-  //personaData.chat.push(chatMessage);
+
+      const chatMessage = {
+        "From": "user",
+        "Time": new Date().toLocaleString(),
+        "Content": messageInput.value
+      };
+
+      setPersonaData(prevPersonaData => {
+        return {
+          ...prevPersonaData,
+          chat: [...prevPersonaData.chat, chatMessage]
+        };
+      });
+      
+      
+      sendPrompt(prompt);
+    }
   }
-}
 
+
+  //***************************************************************************************************************** */
   async function sendPrompt(prompt) {
 
-    console.log(prompt);
+    
     const response = await fetch("/api/generate", {
         method: "POST",
         headers: {
@@ -72,15 +88,22 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
         throw data.error || new Error(`Request failed with status ${response.status}`);
     }
     const chatMessage = {
-        "From": "Bot",
+        "From": "bot",
         "Time": new Date().toLocaleString(),
         "Content": data.result
     };
-    setPersonaData({ ...personaData, chat: chatMessage})
-    //personaData.chat.push(chatMessage);
+    
+    setPersonaData(prevPersonaData => {
+      return {
+        ...prevPersonaData,
+        chat: [...prevPersonaData.chat, chatMessage]
+      };
+    });
+
     
 }
 
+//***************************************************************************************************************** */
 
   return (
     <Modal show={show} onHide={onHide}>
@@ -117,14 +140,19 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
                 <textarea
                   className={styles.promptInput}
                   value={personaData.prompt}
-                  onChange={e => setPersonaData({ ...personaData, prompt: e.target.value })}
-                >
+                  onChange={e => setPersonaData((prevPersonaData) => {
+                    return {
+                      ...prevPersonaData,
+                      prompt: e.target.value
+                    }
+                  }
+                  )}>
                 </textarea>
               </Row>
 
-              <Row>
-                <button className={styles.submit} onClick={() => initialPrompt(personaData.prompt)}>Init Persona with Prompt</button>
-              </Row>
+              
+
+              
             </Col>
 
             <Col className={styles.modalContentRows} wrap="nowrap">
@@ -158,7 +186,7 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
               <div className={styles.chatContainer} wrap="nowrap">
 
                 {personaData.chat.map((message, index) => (
-                  <div key={index} className={`${styles.message} ${message.From === 'Bot' ? styles.leftAligned : styles.rightAligned}`}>
+                  <div key={index} className={`${styles.message} ${message.From === 'bot' ? styles.leftAligned : styles.rightAligned}`}>
                     <div className={styles.messageMeta}>
                       <div className={styles.messageFrom}>{message.From}</div>
                       <div className={styles.messageTime}>{message.Time}</div>
