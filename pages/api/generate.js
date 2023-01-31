@@ -26,11 +26,11 @@ export default async function (req, res) {
     const completion = await openai.createCompletion({
       model: req.body.technical.model || "text-davinci-002",
       prompt: prompt,
-      temperature: req.body.technical.temperature || 0.5,
-      max_tokens: req.body.technical["max_tokens"] || 40,
-      top_p: req.body.technical["top_p"] || 1,
-      frequency_penalty: req.body.technical["frequency_penalty"] || 0,
-      presence_penalty: req.body.technical["presence_penalty"] || 0,
+      temperature: Number(req.body.technical.temperature) || 0.5,
+      max_tokens: Number(req.body.technical["max_tokens"]) || 40,
+      top_p: Number(req.body.technical["top_p"]) || 1,
+      frequency_penalty: Number(req.body.technical["frequency_penalty"]) || 0,
+      presence_penalty: Number(req.body.technical["presence_penalty"]) || 0,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch(error) {

@@ -30,24 +30,13 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
     });
   };
 
-  /* function updatePrompt(message){
-    setPersonaData(prevPersonaData => {
-      return {
-        ...prevPersonaData,
-        prompt: [...prevPersonaData.prompt, message]
-      };
-    });
-
-  } */
-
-  
 
 //***************************************************************************************************************** */
-  function sendMessage() {
+  
+function sendMessage() {
     const messageInput = document.getElementById("messageInput");
     if (messageInput) {
       const prompt = personaData.prompt + " \nuser: "+ messageInput.value + "\nYou:";
-
 
       const chatMessage = {
         "From": "user",
@@ -61,17 +50,14 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
           chat: [...prevPersonaData.chat, chatMessage]
         };
       });
-      
-      
       sendPrompt(prompt);
     }
   }
 
-
   //***************************************************************************************************************** */
+
   async function sendPrompt(prompt) {
 
-    
     const response = await fetch("/api/generate", {
         method: "POST",
         headers: {
@@ -83,33 +69,34 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
         }),
     });
     const data = await response.json();
-    console.log(data.result);
+   
     if (response.status !== 200) {
         throw data.error || new Error(`Request failed with status ${response.status}`);
     }
+
+    //Create new message object
     const chatMessage = {
         "From": "bot",
         "Time": new Date().toLocaleString(),
         "Content": data.result
     };
-    
+
+    //Add new message object to chat array
     setPersonaData(prevPersonaData => {
       return {
         ...prevPersonaData,
         chat: [...prevPersonaData.chat, chatMessage]
       };
-    });
-
-    
+    }
+  );   
 }
 
-//***************************************************************************************************************** */
+//********************************** JSX Elements ******************************************************************************* */
 
   return (
     <Modal show={show} onHide={onHide}>
       <div className={styles.modal} >
         <Container fluid>
-
           <Row className={styles.modalHeader}>
             <Col>
               <button className={styles.submit} onClick={() => onHide(persona)}>Close and Discard</button>
@@ -118,11 +105,8 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
               <button className={styles.submit} onClick={handleSubmit}>Close and Save</button>
             </Col>
           </Row>
-
           <Row className={styles.modalContent} wrap="nowrap">
-
             <Col className={styles.modalContentRows} wrap="nowrap">
-
               <h3>Persona</h3>
               <Row>
                 <div className={styles.inputContainer}>
@@ -133,7 +117,8 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
                       className={styles.input}
                       type="text"
                       value={name}
-                      onChange={e => setName(e.target.value)} /></Col>
+                      onChange={e => setName(e.target.value)} />
+                  </Col>
                 </div>
               </Row>
               <Row>
@@ -141,28 +126,16 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
                   className={styles.promptInput}
                   value={personaData.prompt}
                   onChange={e => setPersonaData((prevPersonaData) => {
-                    return {
-                      ...prevPersonaData,
-                      prompt: e.target.value
-                    }
-                  }
-                  )}>
+                    return { ...prevPersonaData, prompt: e.target.value }
+                  })}>
                 </textarea>
               </Row>
-
-              
-
-              
             </Col>
-
             <Col className={styles.modalContentRows} wrap="nowrap">
               <h3>Technical</h3>
               {Object.entries(personaData.technical).map(([key, value]) => (
                 <div key={key} className={styles.inputContainer}>
-
                   <label>{key}:</label>
-
-
                   <input
                     className={styles.input}
                     type="text" value={value}
@@ -171,22 +144,18 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
                     })} />
                 </div>))}
             </Col>
-
             <Col className={styles.modalContentRows} wrap="nowrap">
               <h3>Chat</h3>
               <Row className={styles.inputContainer}>
-
                 <Col>
                   <input className={styles.input} id="messageInput" type="text" placeholder="Type your message here" onChange={handleChange} />
                 </Col>
                 <Col>
-                  <button className={`${styles.submit} ${styles.button}`} onClick={()=>sendMessage()}>Send</button></Col>
+                  <button className={`${styles.submit} ${styles.button}`} onClick={() => sendMessage()}>Send</button></Col>
               </Row>
-
               <div className={styles.chatContainer} wrap="nowrap">
-
                 {personaData.chat.map((message, index) => (
-                  <div key={index} className={`${styles.message} ${message.From === 'bot' ? styles.leftAligned : styles.rightAligned}`}>
+                  <div key={index} className={`${styles.message} ${message.From === 'bot' ? styles.bot : styles.user}`}>
                     <div className={styles.messageMeta}>
                       <div className={styles.messageFrom}>{message.From}</div>
                       <div className={styles.messageTime}>{message.Time}</div>
