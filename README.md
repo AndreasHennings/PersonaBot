@@ -1,12 +1,11 @@
 # PersonaBot
-## A management tool for creating and editing ChatGPT-based Chatbots
+## A management tool for ChatGPT-based Chatbots
 
 ![UI](/public/PersBotUI.png)
 
 ### About
 
-Easily create and configure Chatbots. 
-
+Easily create and configure Chatbots based on ChatGPT. PersonaBot gives you easy access to all settings and features without having to touch the code.
 Get in contact with virtual people you need in your life!
 
 Here are some suggestions:
@@ -21,13 +20,11 @@ The possibilities are only limited by your imagination!
 
 ### Prerequisites
 
-If you want to create a new bot, you'll need two things:
-
-1. An OpenAI API-key (https://beta.openai.com/docs/quickstart)
-
-2. Credentials for a telegram bot. 
+If you want to use this application, you'll need an [OpenAI API-key] (https://beta.openai.com/docs/quickstart)
 
 ### Setup
+
+This application can be run as a webservice or locally in your browser.
 
 1. If you don’t have Node.js installed, [install it from here](https://nodejs.org/en/)
 
@@ -39,10 +36,14 @@ If you want to create a new bot, you'll need two things:
 
    ```bash
    $ npm install
+   $ npm install react-grid-system
+   $ npm install react-overlays
    ```
-
-
-You should now be able to access the app at [http://localhost:3000](http://localhost:3000)! For the full context behind this example app, check out the [tutorial](https://beta.openai.com/docs/quickstart).
+5. Run the app
+ ```bash
+   $ npm run dev
+   ```
+Open your browser and navigate to  http://localhost:3000
 
 ### Technology
 
