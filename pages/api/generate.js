@@ -1,11 +1,10 @@
 import { Configuration, OpenAIApi } from "openai";
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
-
 export default async function (req, res) {
+  let configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+
   if (!configuration.apiKey) {
     const apiKey = req.body.technical["api-key"] || '';
     if (apiKey.trim().length === 0) {
@@ -16,8 +15,12 @@ export default async function (req, res) {
       });
       return;
     }
-    configuration.apiKey = apiKey;
+    configuration = new Configuration({
+      apiKey: apiKey,
+    });
   }
+
+  const openai = new OpenAIApi(configuration);
 
   const prompt = req.body.prompt || '';
   
