@@ -17,6 +17,22 @@ Here are some suggestions:
 
 The possibilities are only limited by your imagination!
 
+### HowTo
+
+Click on a bot to open its features window:
+
+![UI](/public/Modal.png)
+
+The initial prompt in the left column explains the bot who he/she is. Change it to your likings.
+In the middle column, you can try out different settings. Remember to paste in your OpenAI API key!
+In the right column, you can enter a new message to the bot. Underneath, your chat history will be displayed.
+
+Quitting:
+"Close and Discard" will do just that.
+"Close and Save" will close the edit window and update all data.
+
+IMPORTANT: As of now, changes will not be persisted and only be available as long as the application runs.
+
 
 ### Prerequisites
 
