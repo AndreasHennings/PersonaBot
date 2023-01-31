@@ -7,6 +7,8 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
 
   if (!persona) { return null; }
 
+  const includeChat = false;
+
   //Since the bot's name is outside of the data-array and is used to identify individual bots,
   //We're creating a separate hook for its data
   const [name, setName] = useState(persona.name);
@@ -36,7 +38,17 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
 function sendMessage() {
     const messageInput = document.getElementById("messageInput");
     if (messageInput) {
-      const prompt = personaData.prompt + " \nuser: "+ messageInput.value + "\nYou:";
+
+      //Create new entry for initial prompt statement
+      const newPrompt = personaData.prompt + " \nuser: "+ messageInput.value;// 
+
+      if (includeChat){
+      setPersonaData(prevPersonaData => {
+        return {
+          ...prevPersonaData,
+          prompt: newPrompt
+        };
+      });}
 
       const chatMessage = {
         "From": "user",
@@ -50,7 +62,9 @@ function sendMessage() {
           chat: [...prevPersonaData.chat, chatMessage]
         };
       });
-      sendPrompt(prompt);
+      const finalPrompt = newPrompt + " \nYou:";
+      sendPrompt(finalPrompt); 
+      console.log(personaData.prompt);
     }
   }
 
@@ -70,9 +84,23 @@ function sendMessage() {
     });
     const data = await response.json();
    
+
+    //******************************************** */
     if (response.status !== 200) {
         throw data.error || new Error(`Request failed with status ${response.status}`);
     }
+
+    if (includeChat){
+    const updatedPrompt = prompt +  data.result;
+    
+    setPersonaData(prevPersonaData => {
+      return {
+        ...prevPersonaData,
+        prompt: updatedPrompt
+      };
+    });}
+
+    
 
     //Create new message object
     const chatMessage = {
@@ -117,7 +145,9 @@ function sendMessage() {
                       className={styles.input}
                       type="text"
                       value={name}
-                      onChange={e => setName(e.target.value)} />
+                      onChange={e => setName(e.target.value)} 
+                      
+                      />
                   </Col>
                 </div>
               </Row>
