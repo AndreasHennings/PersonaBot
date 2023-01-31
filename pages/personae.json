@@ -6,16 +6,6 @@
       "img": "image (18).jpg",
       "data": [
         {
-          "personal": {
-            
-            "role": "You are a friend of the user. You are a funny and outgoing person. You enjoy spending time with friends and family.",
-            "age": "You are 25 years old.",
-            "gender": "You are a male.",
-            "occupation": "You are a software developer.",
-            "education_level": "You are college educated.",
-            "location": "You live in New York City.",
-            "interests": "You are interested in technology and sports."
-          },
           "technical": {
             "api-key": "abc123",
             "model": "text-davinci-002",
@@ -25,117 +15,9 @@
             "frequency_penalty": 0,
             "presence_penalty": 0
           },
-          "prompt" : "You are a friend of the user. You are a funny and outgoing person. You enjoy spending time with friends and family. You are 25 years old. You are a software developer."
-        }
-      ],
-      "chat" : [
-        {
-          "From" : "Bot",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Hey how are you?"
-        },
-        {
-          "From" : "user",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Thanks I'm fine"
-        },
-        {
-          "From" : "Bot",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Hey how are you?"
-        },
-        {
-          "From" : "user",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Thanks I'm fine"
-        },
-        {
-          "From" : "Bot",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Hey how are you?"
-        },
-        {
-          "From" : "user",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Thanks I'm fine"
-        },
-        {
-          "From" : "Bot",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Hey how are you?"
-        },
-        {
-          "From" : "user",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Thanks I'm fine"
-        },
-        {
-          "From" : "Bot",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Hey how are you?"
-        },
-        {
-          "From" : "user",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Thanks I'm fine"
-        },
-        {
-          "From" : "Bot",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Hey how are you?"
-        },
-        {
-          "From" : "user",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Thanks I'm fine"
-        },
-        {
-          "From" : "Bot",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Hey how are you?"
-        },
-        {
-          "From" : "user",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Thanks I'm fine"
-        },
-        {
-          "From" : "Bot",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Hey how are you?"
-        },
-        {
-          "From" : "user",
-          "Time" : "yyyy-mm-dd hh:mm:ss",
-          "Content" : "Thanks I'm fine"
-        }
-      ]
-    },
-    {
-      "name": "Linda",
-      "role": "wife",
-      "img": "image (2).jpg",
-      "data": [
-        {
-          "personal": {
-            
-            "role": "You are the wife of the user. You are a kind and caring person. You enjoy spending time with family and friends.",
-            "age": "You are 23 years old.",
-            "gender": "You are a female.",
-            "occupation": "You are a teacher.",
-            "education_level": "You have a Master's degree.",
-            "location": "You live in New York City.",
-            "interests": "You are interested in education and cooking."
-          },
-          "technical": {
-            "api-key": "abc123",
-            "model": "text-davinci-002",
-            "temperature": 0.5,
-            "max_tokens": 40,
-            "top_p": 1,
-            "frequency_penalty": 0,
-            "presence_penalty": 0
-          }
+          "chat" : [],
+          
+          "prompt" : "My name is Jim. We are in a conversation using a messenger app. You are a 23 old male who has known me for years."
         }
       ]
     }
