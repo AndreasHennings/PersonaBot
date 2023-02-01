@@ -15,7 +15,28 @@
             "frequency_penalty": 0,
             "presence_penalty": 0
           },
-          "chat" : [],
+          "chat" : [
+            {
+              "From": "bot",
+              "Time": "xxxxxxxxx",
+              "Content": "*pic:image (18).jpg*"
+            },
+            {
+              "From": "user",
+              "Time": "xxxxxxxxx",
+              "Content": "Hello kldäladgälkakgla    lalkgjagjadgk"
+            },
+            {
+              "From": "bot",
+              "Time": "xxxxxxxxx",
+              "Content": "Hello"
+            },
+            {
+              "From": "user",
+              "Time": "xxxxxxxxx",
+              "Content": "Hello"
+            }
+          ],
           
           "prompt" : "My name is Jim. We are in a conversation using a messenger app. You are a 23 old male who has known me for years."
         }

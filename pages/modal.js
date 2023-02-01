@@ -137,7 +137,8 @@ function sendMessage() {
             </Col>
           </Row>
           <Row className={styles.modalContent} wrap="nowrap">
-            <Col className={styles.modalContentRows} wrap="nowrap">
+
+            <Col lg={4} className={styles.modalContentRows} wrap="nowrap">
               <h3>Persona</h3>
               <Row>
                 <div className={styles.inputContainer}>
@@ -171,9 +172,10 @@ function sendMessage() {
                       onChange={handleCheckbox}/>
                       </div>
               </Row>
-
             </Col>
-            <Col className={styles.modalContentRows} wrap="nowrap">
+
+
+            <Col lg={4} className={styles.modalContentRows} wrap="nowrap">
               <h3>Technical</h3>
               {Object.entries(personaData.technical).map(([key, value]) => (
                 <div key={key} className={styles.inputContainer}>
@@ -186,7 +188,9 @@ function sendMessage() {
                     })} />
                 </div>))}
             </Col>
-            <Col className={styles.modalContentRows} wrap="nowrap">
+
+
+            <Col lg={4} className={styles.modalContentRows} wrap="nowrap">
               <h3>Chat</h3>
               <Row className={styles.inputContainer}>
                 <Col>
@@ -195,17 +199,29 @@ function sendMessage() {
                 <Col>
                   <button className={`${styles.submit} ${styles.button}`} onClick={() => sendMessage()}>Send</button></Col>
               </Row>
-              <div className={styles.chatContainer} wrap="nowrap">
-                {personaData.chat.map((message, index) => (
-                  <div key={index} className={`${styles.message} ${message.From === 'bot' ? styles.bot : styles.user}`}>
-                    <div className={styles.messageMeta}>
-                      <div className={styles.messageFrom}>{message.From}</div>
-                      <div className={styles.messageTime}>{message.Time}</div>
+              <Row>
+                <div className={styles.chatContainer}>
+
+                  {personaData.chat.map((message, index) => (
+                   
+                    <div key={index} className={`${styles.message} ${message.From === 'bot' ? styles.bot : styles.user}`}>
+                      <div className={styles.messageMeta}>
+                        <div className={styles.messageFrom}>{message.From}</div>
+                        <div className={styles.messageTime}>{message.Time}</div>
+                      </div>
+
+                      <div className={styles.messageContent}>
+                        {message.Content.indexOf("*pic:") !== -1 ?
+                          <img 
+                          src={`${message.Content.split("*pic:")[1].split("*")[0]}`} 
+                            alt="image not found" 
+                            className={styles.chatImage}/>
+                          : message.Content}
+                      </div>
                     </div>
-                    <div className={styles.messageContent}>{message.Content}</div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              </Row>
             </Col>
           </Row>
         </Container>

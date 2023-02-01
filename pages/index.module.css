@@ -47,7 +47,7 @@
 
 
 .header{
-  height: calc(100vh / 10);
+  height: calc(100vh / 4);
 }
 
 
@@ -61,7 +61,7 @@
 }
 
 .footer{
-  height: calc((100vh / 10)*4);
+  height: calc(100vh / 4);
 }
 .card {
   height: 90%;
