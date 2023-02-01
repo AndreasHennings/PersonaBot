@@ -7,8 +7,11 @@ export default function EditModal({ persona, show, onHide, onSubmit }) {
 
   if (!persona) { return null; }
 
-  const includeChat = false;
-
+  const [includeChat, setIncludeChat] = React.useState(false);
+  const handleCheckbox = () => {
+    setIncludeChat(!includeChat);
+  }
+  
   //Since the bot's name is outside of the data-array and is used to identify individual bots,
   //We're creating a separate hook for its data
   const [name, setName] = useState(persona.name);
@@ -146,7 +149,6 @@ function sendMessage() {
                       type="text"
                       value={name}
                       onChange={e => setName(e.target.value)} 
-                      
                       />
                   </Col>
                 </div>
@@ -160,6 +162,16 @@ function sendMessage() {
                   })}>
                 </textarea>
               </Row>
+
+              <Row>              
+                <div className={styles.inputContainer}>
+                <label>Add new messages to prompt</label>
+                <input type="checkbox" 
+                      className={styles.input}
+                      onChange={handleCheckbox}/>
+                      </div>
+              </Row>
+
             </Col>
             <Col className={styles.modalContentRows} wrap="nowrap">
               <h3>Technical</h3>
