@@ -33,6 +33,10 @@ Quitting:
 
 IMPORTANT: As of now, changes will not be persisted and only be available as long as the application runs.
 
+### Newest features:
+- Chat history can be included in prompt statement so the bot will not forget.
+- Bot can now be made to send images to the chat by using a tag and telling the bot about that in the prompt: "Send image by replying *pic:URL*
+
 
 ### Prerequisites
 
