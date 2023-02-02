@@ -19,22 +19,7 @@
             {
               "From": "bot",
               "Time": "xxxxxxxxx",
-              "Content": "*pic:image (18).jpg*"
-            },
-            {
-              "From": "user",
-              "Time": "xxxxxxxxx",
-              "Content": "Hello kldäladgälkakgla    lalkgjagjadgk"
-            },
-            {
-              "From": "bot",
-              "Time": "xxxxxxxxx",
-              "Content": "Hello"
-            },
-            {
-              "From": "user",
-              "Time": "xxxxxxxxx",
-              "Content": "Hello"
+              "Content": "Here's a recent image:*pic:image (18).jpg*"
             }
           ],
           

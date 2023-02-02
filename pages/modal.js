@@ -210,12 +210,19 @@ function sendMessage() {
                         <div className={styles.messageTime}>{message.Time}</div>
                       </div>
 
+                      
                       <div className={styles.messageContent}>
                         {message.Content.indexOf("*pic:") !== -1 ?
+                        <div>
+                          <div>
+                            {message.Content.split("*pic:")[0]}
+                          </div>
                           <img 
                           src={`${message.Content.split("*pic:")[1].split("*")[0]}`} 
                             alt="image not found" 
+                            
                             className={styles.chatImage}/>
+                            </div>
                           : message.Content}
                       </div>
                     </div>
